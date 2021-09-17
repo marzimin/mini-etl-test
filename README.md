@@ -5,13 +5,15 @@ This mini project aims to go over creating a basic ETL pipeline (with Python and
 The goal is to:
 
 1. Scrape daily covid data from 3 countries from the [CoronaTracker](https://documenter.getpostman.com/view/11073859Szmcbeho) API
-2. Clean and transform the data into a suitable tabular format
+2. Clean and transform the data into a suitable tabular format (DataFrame)
 3. Load the cleaned data into a SQLite database.
-4. Automate the process to repeat on a daily interval.
+4. BONUS: Automate the process to repeat on a daily interval.
 
 ## Airflow setup instructions (for future me to refer to)
 
 In your CLI (project directory):
+
+Run in a virtual environment:
 
 1. `virtualenv airflow-venv && source airflow-venv/bin/activate`
 2. `pip freeze`
@@ -20,12 +22,12 @@ Referring to [Airflow's quick start guide](https://airflow.apache.org/docs/apach
 
 (Still in your CLI):
 3. `export AIRFLOW_HOME=~/airflow`
-4. `pip install apache-airflow` (NOTE: `pip uninstall apache-airflow` if encountering errors)
+4. `pip install apache-airflow` (NOTE: `pip uninstall apache-airflow` and reinstall if encountering errors)
 
 Initialize the database
 5. `airflow db init`
 
-Create your user credentials (you'll be asked for your password too:)
+Create your user credentials (you'll be asked to provide a password too:)
 `airflow users create \`
     `--username admin \`
     `--firstname John \`
@@ -54,4 +56,4 @@ Now you can open a browser window
 - Troubleshoot on why DAGs remain stuck in scheduled
 - Utilize in a Docker container for portabiilty
 - Make use of cloud services for scalability
-- Identify potential failure/error points
+- Identify other potential failure/error points in pipeline

@@ -19,7 +19,7 @@ dag = DAG(
     'covid_etl_dag',
     default_args=default_args,
     description='First DAG with ETL process',
-    schedule_interval=timedelta(days=1), # run daily
+    schedule_interval=timedelta(days=1), # so it can run daily
 )
 
 def tester_function():
@@ -27,7 +27,7 @@ def tester_function():
 
 run_etl = PythonOperator(
     task_id='daily_covid_etl',
-    python_callable=tester_function, # add function here
+    python_callable=run_covid_etl, # add function here
     dag=dag,
 )
 

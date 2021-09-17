@@ -14,7 +14,7 @@ import sqlite3
 
 # Define helper function to validate data for TRANSOFRM stage:
 def validity_check(df: pd.DataFrame) -> bool:
-    """ Validity checks for your DataFrame. """
+    """ Validity checks for your DataFrame before loading into the SQLite Database. """
     
     # Checks if df is empty
     if df.empty:
@@ -40,7 +40,6 @@ def validity_check(df: pd.DataFrame) -> bool:
 def run_covid_etl():
 
     # Create automated weekly date ranges for API call
-
     now = datetime.now() # provides current date
 
     # Formatting suitable for API string
@@ -55,8 +54,6 @@ def run_covid_etl():
     URL_UK = f"http://api.coronatracker.com/v5/analytics/trend/country?countryCode=GB&startDate={today}&endDate={today}"
     URL_US = f"http://api.coronatracker.com/v5/analytics/trend/country?countryCode=US&startDate={today}&endDate={today}"
     URL_MY = f"http://api.coronatracker.com/v5/analytics/trend/country?countryCode=MY&startDate={today}&endDate={today}"
-
- 
 
     payload={}
     headers = {}
@@ -80,7 +77,8 @@ def run_covid_etl():
         json.dump(data_my, f)
 
     # Convert to pandas dataframe
-    # You want 3 cleaned tables that can be placed in both the s3 bucket as well as a database/data warehouse for loading
+    # You want 3 cleaned tables that can be placed in both the s3 bucket as well as \
+    # a database/data warehouse for loading should you move to cloud services
     data_df_uk = pd.DataFrame(data_uk)
     data_df_us = pd.DataFrame(data_us)
     data_df_my = pd.DataFrame(data_my)

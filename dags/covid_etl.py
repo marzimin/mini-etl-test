@@ -188,3 +188,5 @@ def run_covid_etl():
 
     conn.close()
     print('Closed database successfully.')
+
+#run_covid_etl()

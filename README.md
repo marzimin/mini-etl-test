@@ -21,13 +21,16 @@ Run in a virtual environment:
 Referring to [Airflow's quick start guide](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html) (running locally):
 
 (Still in your CLI):
+
 3. `export AIRFLOW_HOME=~/airflow`
 4. `pip install apache-airflow` (NOTE: `pip uninstall apache-airflow` and reinstall if encountering errors)
 
 Initialize the database
-5. `airflow db init`
 
-Create your user credentials (you'll be asked to provide a password too:)
+    5. `airflow db init`
+
+Create your user credentials (you'll be asked to provide a password too:):
+
 `airflow users create \`
     `--username admin \`
     `--firstname John \`
@@ -36,18 +39,22 @@ Create your user credentials (you'll be asked to provide a password too:)
     `--email email@email.com`
 
 Go back to your home directory (`cd`), there should be an airflow folder
+
 5. `cd airflow && nano airflow.cfg`
 
 In the text editor there should be a 'dags_folder' filepath. Change this filepath to the appropriate /dags folder in your project directory.
 
 Now you can activate your airflow webserver
+
 6. `airflow webserver --port 8080`
 
 You'll need to open a new terminal window to open the scheduler (both this and the webserver need to be active).
+
 7. Open a venv again `source airflow-venv/bin/activate`
 8. `airflow scheduler`
 
 Now you can open a browser window
+
 9. localhost:8080 and type your user & password.
 
 ## CAVEATS/FUTURE IMPROVEMENTS:
